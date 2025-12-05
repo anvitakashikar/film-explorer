@@ -1,6 +1,6 @@
 import type { MovieShort } from "../types/movie";
 
-const KEY = "film_explorer_favorites";
+const KEY = "favorites";
 
 export function getFavorites(): MovieShort[] {
   const data = localStorage.getItem(KEY);
@@ -13,13 +13,17 @@ export function isFavorite(id: string): boolean {
 }
 
 export function toggleFavorite(movie: MovieShort) {
-  let favs = getFavorites();
+  const favs = getFavorites();
 
-  if (isFavorite(movie.imdbID)) {
-    favs = favs.filter((m) => m.imdbID !== movie.imdbID);
+  const exists = favs.find((m) => m.imdbID === movie.imdbID);
+
+  let updated;
+
+  if (exists) {
+    updated = favs.filter((m) => m.imdbID !== movie.imdbID);
   } else {
-    favs.push(movie);
+    updated = [...favs, movie];
   }
 
-  localStorage.setItem(KEY, JSON.stringify(favs));
+  localStorage.setItem(KEY, JSON.stringify(updated));
 }
