@@ -8,7 +8,7 @@ export default function Favorites() {
 
   return (
     <main>
-      <h2 className="text-xl font-bold max-w-4xl mx-auto my-4">
+      <h2 className="page-title">
         ❤️ Your Favorites
       </h2>
 

@@ -52,6 +52,10 @@ const Home = () => {
     setPage(1);
   };
 
+  const loadMore = () => {
+    setPage((prev) => prev + 1);
+  };
+
   return (
     <>
       <SearchBar onSearch={handleSearch} />
@@ -66,9 +70,7 @@ const Home = () => {
       {/* ✅ SAFE load more */}
       {movies.length > 0 && !loading && (
         <div className="load-more-wrapper">
-          <button className="load-btn" onClick={() => setPage((p) => p + 1)}>
-            Load More
-          </button>
+          <button onClick={loadMore} className="load-btn" />
         </div>
       )}
     </>

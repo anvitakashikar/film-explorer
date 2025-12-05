@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import type { MovieShort } from "../types/movie";
 import { Link } from "react-router-dom";
 import { isFavorite, toggleFavorite } from "../utils/favorites";
@@ -12,34 +12,29 @@ export default function MovieCard({ movie }: { movie: MovieShort }) {
   };
 
   return (
-    <article className="border rounded p-2 flex gap-3 items-center justify-between">
-      <div className="flex gap-3">
-        <img
-          src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.png"}
-          alt={movie.Title}
-          className="w-24 h-36 object-cover"
-        />
-        <div>
-          <h3 className="font-semibold">{movie.Title}</h3>
-          <p className="text-sm">
-            {movie.Year} • {movie.Type}
-          </p>
-          <Link
-            to={`/movie/${movie.imdbID}`}
-            className="text-sm text-blue-600 mt-2 inline-block"
-          >
-            View details →
+    <article className="movie-card">
+      <img
+        src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.png"}
+        alt={movie.Title}
+        className="movie-img"
+      />
+
+      <div className="movie-body">
+        <h3 className="movie-title">{movie.Title}</h3>
+        <p className="movie-meta">
+          {movie.Year} • {movie.Type}
+        </p>
+
+        <div className="movie-actions">
+          <Link to={`/movie/${movie.imdbID}`} className="details-link">
+            Details →
           </Link>
+
+          <button className="fav-btn" onClick={toggle}>
+            {fav ? "❌ Remove" : "❤️ Add"}
+          </button>
         </div>
       </div>
-
-      {/* ✅ FAVORITE BUTTON */}
-      <button
-        onClick={toggle}
-        className="px-3 py-1 border rounded text-sm"
-      >
-        {fav ? "❌ Remove" : "❤️ Add"}
-      </button>
     </article>
   );
 }
