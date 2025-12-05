@@ -6,10 +6,13 @@ import { isFavorite, toggleFavorite } from "../utils/favorites";
 export default function MovieCard({ movie }: { movie: MovieShort }) {
   const [fav, setFav] = useState(isFavorite(movie.imdbID));
 
-  const toggle = () => {
-    toggleFavorite(movie);
-    setFav(!fav);
-  };
+ const toggle = () => {
+  toggleFavorite(movie);
+  setFav(!fav);
+  window.dispatchEvent(new Event("storage"));
+};
+
+
 
   return (
     <article className="movie-card">

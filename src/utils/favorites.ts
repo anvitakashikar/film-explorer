@@ -3,8 +3,7 @@ import type { MovieShort } from "../types/movie";
 const KEY = "favorites";
 
 export function getFavorites(): MovieShort[] {
-  const data = localStorage.getItem(KEY);
-  return data ? JSON.parse(data) : [];
+  return JSON.parse(localStorage.getItem(KEY) || "[]");
 }
 
 export function isFavorite(id: string): boolean {
@@ -14,11 +13,9 @@ export function isFavorite(id: string): boolean {
 
 export function toggleFavorite(movie: MovieShort) {
   const favs = getFavorites();
-
   const exists = favs.find((m) => m.imdbID === movie.imdbID);
 
   let updated;
-
   if (exists) {
     updated = favs.filter((m) => m.imdbID !== movie.imdbID);
   } else {

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { searchMovies } from "../api/movieService";
 import SearchBar from "../components/SearchBar";
 import MovieList from "../components/MovieList";
+import MovieSkeleton from "../components/MovieSkeleton";
+
 
 interface Movie {
   imdbID: string;
@@ -60,12 +62,19 @@ const Home = () => {
     <>
       <SearchBar onSearch={handleSearch} />
 
-      {loading && <p style={{ textAlign: "center" }}>Loading...</p>}
+      {loading && (
+        <div className="movie-grid">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <MovieSkeleton key={i} />
+          ))}
+        </div>
+      )}
+
 
       {error && <p style={{ textAlign: "center", color: "red" }}>{error}</p>}
 
       {/* ✅ SAFE check prevents crash */}
-      {movies.length > 0 && <MovieList movies={movies} />}
+     {!loading && <MovieList movies={movies} />}
 
       {/* ✅ SAFE load more */}
       {movies.length > 0 && !loading && (
