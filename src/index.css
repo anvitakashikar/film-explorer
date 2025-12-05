@@ -250,3 +250,46 @@ a {
   border-radius: 8px;
   text-align: center;
 }
+/* LANDING PAGE */
+.landing {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+.landing-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.landing-sub {
+  color: #94a3b8;
+  max-width: 500px;
+}
+
+.landing-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.landing-btn {
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid #334155;
+}
+
+.landing-btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.landing-btn.secondary {
+  background: transparent;
+  color: white;
+}
